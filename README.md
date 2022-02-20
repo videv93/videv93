@@ -1,4 +1,4 @@
-# web-development-2020
+# web-development
 
 Finding your path
 > What Do You Want To Do?
