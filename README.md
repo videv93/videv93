@@ -80,8 +80,8 @@
 <!-- START:recent-projects -->
 <div align="center">
   
-  [![Repo Card](https://github-readme-stats.vercel.app/api/pin/?username=videv93&repo=REPO1&theme=tokyonight&hide_border=true)](https://github.com/videv93/REPO1)
-  [![Repo Card](https://github-readme-stats.vercel.app/api/pin/?username=videv93&repo=REPO2&theme=tokyonight&hide_border=true)](https://github.com/videv93/REPO2)
+  [![Repo Card](https://github-readme-stats.vercel.app/api/pin/?username=videv93&repo=Smart-Money-Tracking&theme=tokyonight&hide_border=true)](https://github.com/videv93/Smart-Money-Tracking)
+  [![Repo Card](https://github-readme-stats.vercel.app/api/pin/?username=videv93&repo=coffee-pos-microservies&theme=tokyonight&hide_border=true)](https://github.com/videv93/coffee-pos-microservies)
 
 </div>
 <!-- END:recent-projects -->
