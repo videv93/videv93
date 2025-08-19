@@ -1,0 +1,134 @@
+name: Update README Profile
+
+on:
+  schedule:
+    # Runs every day at 6 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [ master, main ]
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Update GitHub Stats
+      run: |
+        # Get current date for last updated section
+        CURRENT_DATE=$(date '+%d %B %Y')
+        
+        # Update last updated section
+        sed -i "s/<!-- START:last-updated -->.*/<!-- START:last-updated -->\n  $CURRENT_DATE/" README.md
+        
+        echo "Updated last modified date to: $CURRENT_DATE"
+
+    - name: Get Random Quote
+      id: quote
+      run: |
+        # Array of programming quotes
+        quotes=(
+          "\"Building the future one line of code at a time 🚀\" - vitr"
+          "\"AI and blockchain: the perfect fusion for tomorrow's solutions\" - vitr"
+          "\"Smart contracts are only as smart as the humans who audit them\" - vitr"
+          "\"Multi-agent systems: when one AI isn't enough\" - vitr"
+          "\"Code is like humor. When you have to explain it, it's bad.\" - Cory House"
+          "\"First, solve the problem. Then, write the code.\" - John Johnson"
+          "\"The best way to predict the future is to invent it.\" - Alan Kay"
+          "\"Any fool can write code that a computer can understand. Good programmers write code that humans can understand.\" - Martin Fowler"
+          "\"Innovation distinguishes between a leader and a follower.\" - Steve Jobs"
+          "\"The only way to do great work is to love what you do.\" - Steve Jobs"
+          "\"Technology is nothing. What's important is that you have a faith in people.\" - Steve Jobs"
+          "\"Simplicity is the ultimate sophistication.\" - Leonardo da Vinci"
+        )
+        
+        # Get random quote
+        quote=${quotes[$RANDOM % ${#quotes[@]}]}
+        echo "QUOTE=$quote" >> $GITHUB_OUTPUT
+        echo "Selected quote: $quote"
+
+    - name: Update Quote in README
+      run: |
+        quote="${{ steps.quote.outputs.QUOTE }}"
+        # Escape special characters for sed
+        escaped_quote=$(echo "$quote" | sed 's/[[\.*^$()+?{|]/\\&/g')
+        
+        # Update the quote section
+        sed -i "/<!-- START:quote -->/,/<!-- END:quote -->/c\  <!-- START:quote -->\n  <i>$escaped_quote</i>\n  <!-- END:quote -->" README.md
+        
+        echo "Updated quote section"
+
+    - name: Update Repository Stats
+      run: |
+        # Get GitHub username from repository
+        USERNAME=$(echo "$GITHUB_REPOSITORY" | cut -d'/' -f1)
+        
+        # Replace USERNAME placeholders in README
+        sed -i "s/USERNAME/$USERNAME/g" README.md
+        
+        echo "Updated username to: $USERNAME"
+
+    - name: Get Latest Repositories
+      id: repos
+      run: |
+        # Get GitHub username
+        USERNAME=$(echo "$GITHUB_REPOSITORY" | cut -d'/' -f1)
+        
+        # Get latest repositories (excluding forks and this profile repo)
+        REPOS=$(curl -s "https://api.github.com/users/$USERNAME/repos?sort=updated&per_page=10" | \
+                jq -r '.[] | select(.fork == false and .name != "'$USERNAME'") | .name' | \
+                head -2 | tr '\n' ' ')
+        
+        REPO_ARRAY=($REPOS)
+        REPO1=${REPO_ARRAY[0]:-"awesome-project"}
+        REPO2=${REPO_ARRAY[1]:-"cool-app"}
+        
+        echo "REPO1=$REPO1" >> $GITHUB_OUTPUT
+        echo "REPO2=$REPO2" >> $GITHUB_OUTPUT
+        echo "Found repositories: $REPO1, $REPO2"
+
+    - name: Update Recent Projects
+      run: |
+        REPO1="${{ steps.repos.outputs.REPO1 }}"
+        REPO2="${{ steps.repos.outputs.REPO2 }}"
+        
+        # Replace REPO1 and REPO2 placeholders
+        sed -i "s/REPO1/$REPO1/g" README.md
+        sed -i "s/REPO2/$REPO2/g" README.md
+        
+        echo "Updated project repositories"
+
+    - name: Commit and Push Changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        if git diff --quiet; then
+          echo "No changes to commit"
+        else
+          git add README.md
+          git commit -m "🤖 Auto-update README stats and content"
+          git push
+          echo "Changes committed and pushed"
+        fi
+
+    - name: Generate Activity Summary
+      run: |
+        echo "✅ README Profile Update Complete!"
+        echo "📊 Updated GitHub stats and activity"
+        echo "💬 Refreshed daily quote"
+        echo "🔄 Updated repository information"
+        echo "📅 Set last updated date"
