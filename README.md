@@ -18,9 +18,9 @@
 <div align="center">
   
   <!-- START:github-stats -->
-  <img src="https://github-readme-stats.vercel.app/api?username=USERNAME&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="GitHub Stats" />
+  <img src="https://github-readme-stats.vercel.app/api?username=videv93&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="GitHub Stats" />
   
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=USERNAME&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=videv93&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
   <!-- END:github-stats -->
 
 </div>
@@ -63,7 +63,7 @@
 
 <!-- START:activity-graph -->
 <div align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=USERNAME&theme=tokyo-night&hide_border=true" alt="Activity Graph" />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=videv93&theme=tokyo-night&hide_border=true" alt="Activity Graph" />
 </div>
 <!-- END:activity-graph -->
 
@@ -71,7 +71,7 @@
 
 <!-- START:github-trophies -->
 <div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=USERNAME&theme=tokyonight&no-frame=true&no-bg=true&row=1&column=7" alt="GitHub Trophies" />
+  <img src="https://github-profile-trophy.vercel.app/?username=videv93&theme=tokyonight&no-frame=true&no-bg=true&row=1&column=7" alt="GitHub Trophies" />
 </div>
 <!-- END:github-trophies -->
 
@@ -80,8 +80,8 @@
 <!-- START:recent-projects -->
 <div align="center">
   
-  [![Repo Card](https://github-readme-stats.vercel.app/api/pin/?username=USERNAME&repo=REPO1&theme=tokyonight&hide_border=true)](https://github.com/USERNAME/REPO1)
-  [![Repo Card](https://github-readme-stats.vercel.app/api/pin/?username=USERNAME&repo=REPO2&theme=tokyonight&hide_border=true)](https://github.com/USERNAME/REPO2)
+  [![Repo Card](https://github-readme-stats.vercel.app/api/pin/?username=videv93&repo=REPO1&theme=tokyonight&hide_border=true)](https://github.com/videv93/REPO1)
+  [![Repo Card](https://github-readme-stats.vercel.app/api/pin/?username=videv93&repo=REPO2&theme=tokyonight&hide_border=true)](https://github.com/videv93/REPO2)
 
 </div>
 <!-- END:recent-projects -->
